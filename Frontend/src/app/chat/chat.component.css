@@ -1,0 +1,296 @@
+#chats {
+    width: 100vw;
+}
+.user {
+    position: relative;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 48px;
+    margin-left: 64px;
+}
+.user::before {
+    content: attr(name);
+    position: absolute;
+    left: -48px;
+    top: 2px;
+    font-size: 25px;
+    font-weight: 500;
+    width: 48px;
+    background-color: blueviolet;
+    height: 48px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+.user-name {
+    font-weight: 500;
+}
+.user span {
+    font-weight: 300;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.user-container:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.user-container {
+    width: 100%;
+    padding: 7px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    user-select: none;  
+}
+.user-list {
+    border-right: 1px solid #ccc;
+    overflow-y: scroll;
+    height: 100vh;
+}
+.user-list::-webkit-scrollbar {
+    width: 5px;
+    border-left: 1px solid #ccc;
+}
+.user-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+}
+.chats {
+    position: relative;
+}
+.chatbox {
+    height: 100vh;
+}
+.chat-navbar {
+    height: 48px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+.chat-navbar > h3 {
+    flex-grow: 1;
+}
+.tdot {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 25px;
+    cursor: pointer;
+    width: 25px;
+    position: relative;
+}
+.tdot:hover::after {
+    top: 30px;
+    opacity: 1;
+}
+.tdot::after {
+    content: "Delete";
+    position: absolute;
+    top: 20px;
+    background-color: rgb(54, 54, 54);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    z-index: 3;
+    transition: top 0.3s, opacity 0.3s;
+}
+.tdot div {
+    width: 4px;
+    height: 4px;
+    background-color: black;
+    border-radius: 50%;
+}
+.sendbox {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 48px;
+    display: flex;
+}
+.sendbox input:not(:placeholder-shown) + .send-btn {
+    background-color: rgb(21, 132, 206);
+}
+.send-btn {
+    padding: 0 14px;
+    border: 1px solid #ccc;
+    background-color: rgb(189, 189, 189);
+    color: #fff;
+    width: 100px;
+}
+.sendbox input {
+    border: 1px solid #ccc;
+    flex-grow: 1;
+    padding-left: 20px;
+    transition: box-shadow 0.3s;
+}
+.sendbox input:focus {
+    outline: 0;
+    box-shadow: inset 0 -4px 0 rgb(21, 132, 206);
+}
+.messages {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 48px;
+    bottom: 48px;
+    padding-top: 7px;
+}
+.messages::-webkit-scrollbar {
+    width: 5px;
+    border-left: 1px solid #ccc;
+}
+.messages::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+.messages::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(21, 132, 206);
+}
+.messages .sent, .messages .received {
+    border-radius: 12px;
+    padding: 7px 10px;
+    margin: 5px;
+    max-width: 80%;
+    display: inline-block;
+}
+.messages .msg-sent {
+    text-align: right;
+}
+.messages .received {
+    background-color: rgb(21, 132, 206);
+    color: #fff;
+    position: relative;
+    margin-left: 15px;
+}
+.messages .sent {
+    background-color: rgb(9, 139, 122);
+    color: #fff;
+    margin-right: 15px;
+    position: relative;
+}
+.messages .received::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: rgb(21, 132, 206);
+    position: absolute;
+    left: -3px;
+    transform: rotate(45deg);
+}
+.messages .sent::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: rgb(9, 139, 122);
+    position: absolute;
+    transform: rotate(45deg);
+}
+.time {
+    position: absolute;
+    background-color: rgb(119, 119, 119);
+    color: #fff;
+    top: 0;
+    padding: 0 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    width: 100px;
+    opacity: 0;
+}
+.received .time {
+    left: calc(100% + 5px);
+}
+.sent .time {
+    right: calc(100% + 5px);
+}
+.sent:hover .time, .received:hover .time {
+    opacity: 1;
+    transition: 0.5s;
+}
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 25px;
+    position: relative;
+}
+.logout-btn {
+    position: relative;
+    width: 18px;
+    cursor: pointer;
+}
+.logout-btn::after {
+    content: "Logout";
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    background-color: rgb(54, 54, 54);
+    color: #fff;
+    padding: 3px 7px;
+    border-radius: 3px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: top 0.3s, opacity 0.3s;
+    transition-delay: .3s;
+}
+.logout-btn:hover::after {
+    top: calc(100% + 5px);
+    opacity: 1;
+}
+.all-users {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.user-part {
+    border-left: 1px solid #ccc;
+}
+.chat-user {
+    padding: 5px 12px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+.chat-user:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.loading-anim {
+    display: flex;
+    margin: 7px 3px;
+}
+.loading-anim div {
+    width: 7px;
+    height: 7px;
+    background-color: rgb(116, 116, 116);
+    border-radius: 50%;
+    margin-right: 3px;
+    position: relative;
+    animation: bounce 1.5s infinite linear alternate;
+}
+.loading-anim div:nth-child(2) {
+    animation-delay: 0.3s;
+}
+.loading-anim div:nth-child(3) {
+    animation-delay: 0.6s;
+}
+@keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 4px;
+    }
+    100% {
+        top: -4px;
+    }
+}
+.selected {
+    background-color: rgb(145, 201, 238);
+}

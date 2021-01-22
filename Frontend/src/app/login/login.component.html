@@ -1,0 +1,25 @@
+<div class="container login border rounded p-5 m-4">
+  <form [formGroup]="loginSubmitForm"  class="row" (ngSubmit)="loginSubmit()">
+      <div class="col-md-6 d-flex justify-center flex-column">
+          <h2 class="pb-3 card-title">Login</h2>
+          <label for="email" class="pb-2" [ngClass]="{'error': submitted && myForm.email.errors}">Email</label>
+          <input type="email" class="form-control" formControlName="email" [(ngModel)]="emailAddress"  (keydown)="keyPressLogin()" [ngClass]="{'error': submitted && myForm.email.errors || noExistingUser}" class="form-control ml-2" placeholder="Enter your email address">
+          <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.required">
+            <sup>*</sup>Please enter your email
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && myForm.email.errors?.pattern">
+            <sup>*</sup>Please enter valid email
+          </div>
+          <div class="invalid-feedback" *ngIf="submitted && noExistingUser ">
+            <sup>*</sup>User does not exist
+          </div>
+          <br>
+          <input type="submit" value="Login" class="btn btn-primary btn-sm btn-def mb-3">
+          <span class="mx-3 text-secondary"></span>  Not yet a member? <a routerLink="/register">Register Here</a>.
+      </div>
+      <div class="col-md-6 my-auto">
+          <img src="../../assets/images/welcome.svg" width="100%" >
+      </div>
+
+  </form>
+</div>

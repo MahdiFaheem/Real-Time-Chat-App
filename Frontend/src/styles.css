@@ -1,0 +1,45 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgb(236, 236, 236) !important;
+}
+.login {
+  width: 50vw !important;
+  background-color: rgb(243, 243, 243);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  min-height: 60vh;
+  background: #f8f8f8;
+}
+@media screen and (max-width: 720px) {
+  .login {
+    width: 80vw !important;
+  }
+}
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.btn-def {
+  max-width: 120px;
+}
+.invalid-feedback {
+  display: block;
+}
+
+.error:focus,
+.error {
+  border-color: #E91E63;
+  color: #E91E63;
+}

@@ -1,0 +1,49 @@
+<div id="chats">
+  <div class="row chatbox">
+    <div class="col-md-3 user-list p-0">
+      <div class="chat-header">
+        <span>Hello, {{ (currentUser) ? currentUser.firstName : '' }}</span>
+        <span class="logout-btn" (click)="logOutUser()">
+          <img src="../../assets/images/power.svg" alt="Logout" width="100%">
+        </span>
+      </div>
+      <h5 class="px-3 m-2">Conversations</h5>
+      <hr class="m-0" />
+      <div class="user-container" *ngFor="let user of chatUsers" (click)="selectUser(user.id)" [ngClass]="{ selected: selectedUser == user.id }">
+        <div class="user" [attr.name]="user.firstName.charAt(0)">
+          <div class="user-name">{{ user.firstName }}</div>
+          <span>{{ getLastMessage(user.id) }}</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6 chats p-0">
+      <div class="chat-navbar p-4">
+        <h3 class="m-0">{{ getSelectedName() }}</h3>
+        <div *ngIf="selectedUser != 0" class="tdot mx-3" [swal]="{ title: 'Delete Chat?', icon: 'question', showCancelButton: true, cancelButtonText: 'Don\'t Delete', confirmButtonColor: '#dd6b55', confirmButtonText: 'Yes, Delete', text: 'This cannot be undone. You will lose all chats with this user.', focusCancel: true }" (confirm)="deleteChat(selectedUser)">
+          <img src="../../assets/images/trash.svg" alt="Delete" width="20px">
+        </div>
+      </div>
+      <div class="messages">
+        <div *ngFor="let message of selectedChats" [ngClass]="{ 'msg-sent': message.senderId == currentUser.id, 'msg-rece': message.senderId != currentUser.id }">
+          <div [ngClass]="{ sent: message.senderId == currentUser.id, received: message.senderId != currentUser.id }">
+            {{ message.message }} <span class="time">{{ toTimeString(message.sentOn)[0] }}<br>{{ toTimeString(message.sentOn)[1] }}</span>
+          </div>
+        </div>
+      </div>
+      <form class="sendbox" (ngSubmit)="postMessage();">
+        <input type="text" name="message" placeholder="Enter your Message" [(ngModel)]="messageText" />
+        <button class="send-btn" type="submit" (click)="postMessage();$event.preventDefault();">
+          Send
+        </button>
+    </form>
+    </div>
+    <div class="col-md-3 pt-3 user-part p-0">
+      <h5 class="mx-3">Available Users</h5>
+      <hr class="m-0" />
+      <div class="all-users">
+        <div class="chat-user" [ngClass]="{ selected: selectedUser == user.id }" *ngFor="let user of allUsers" (click)="selectUser(user.id)">{{ user.firstName }}</div>
+      </div>
+    </div>
+  </div>
+</div>
